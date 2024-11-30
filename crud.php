@@ -50,7 +50,7 @@
         $location=htmlspecialchars($_POST['home_Address']);
         $mobile=htmlspecialchars($_POST['mobile_Number']);
         $email=htmlspecialchars($_POST['email']);
-        $password=htmlspecialchars($_POST['password']);
+        $password=htmlspecialchars(string: $_POST['password']);
 
         // VALIDATE USER INPUT
         $errors = [];
@@ -61,7 +61,7 @@
             $errors[] = "Name must contain only Alphabets";
         }
         if(empty($location)||!ctype_alnum($location)){
-            $errors[]="Invalid location input";
+            $errors[]="Invalid input for location";
         }
         if(empty($mobile)||!ctype_digit($mobile)){
             $errors[] = "Invalid Mobile Number";
