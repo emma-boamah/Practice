@@ -69,7 +69,7 @@
             if(empty($name)){
                 $errors[] = "Enter Full Name";
             }
-            if(empty($location)||!ctype_alnum($location)){
+            if(empty($location)){
                 $errors[]="Invalid input for location";
             }
             if(empty($mobile)||!ctype_digit($mobile)){
