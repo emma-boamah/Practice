@@ -126,19 +126,19 @@
             </div>
             <div>
                 <label for="home_Address">Home Address</label>
-                <input type="text" name="home_Address" value="" placeholder="Enter Home Address">
+                <input type="text" name="home_Address" value="<?php echo $location?>" placeholder="Enter Home Address">
             </div>
             <div>
                 <label for="mobile_Number">Mobile Number</label>
-                <input type="tel" name="mobile_Number" value="" placeholder="Enter Mobile Number">
+                <input type="tel" name="mobile_Number" value="<?php echo $mobile?>" placeholder="Enter Mobile Number">
             </div>
             <div>
                 <label for="email">E-mail Address</label>
-                <input type="email" name="email" value="" placeholder="Enter E-mail Address">
+                <input type="email" name="email" value="<?php echo $email?>" placeholder="Enter E-mail Address">
             </div>
             <div>
                 <label for="password">Password</label>
-                <input type="password" name="password" value="" placeholder="Enter Password">
+                <input type="password" name="password" value="<?php echo $password?>" placeholder="Enter Password">
             </div>
 
             <div class="">
