@@ -58,7 +58,7 @@
             $name=filter_var($_POST['full_Name'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $location=filter_var($_POST['home_Address'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $mobile=htmlspecialchars($_POST['mobile_Number']);
-            $email=htmlspecialchars($_POST['email']);
+            $email=filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
             $password=htmlspecialchars(string: $_POST['password']);
 
             // VALIDATE USER INPUT
