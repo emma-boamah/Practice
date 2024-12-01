@@ -70,6 +70,7 @@
                 $stmt->bindParam(6, $password, PDO::PARAM_STR);
                 
                 $stmt->execute();
+                $stmt = null;
                 
                 $_SESSION['message'] = "Form has been Added and saved to Table";
                 $_SESSION["msg_type"] = "success";
@@ -92,6 +93,7 @@
         $stmt = $connection->prepare($query);
         $stmt->bindParam(1, $id, PDO::PARAM_INT);
         $stmt->execute();
+        $stmt = null;
 
 
         $_SESSION["message"] = "Form in table has been deleted";
