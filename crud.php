@@ -1,49 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRUD</title>
-</head>
-<body>
-    <h2><div>INSERT DATA FORM</div></h2>
-    <div>
-        <form action="<?php echo $_SERVER["PHP_SELF"]?>" method="POST">
-            <div>
-                <label for="form_Number">Form Number</label>
-                <input type="text" name="form_Number" value="" placeholder="Enter Form ID">
-            </div>
-            <div>
-                <label for="full_Name">Full Name</label>
-                <input type="text" name="full_Name" value="" placeholder="Enter Full Name" required>
-            </div>
-            <div>
-                <label for="home_Address">Home Address</label>
-                <input type="text" name="home_Address" value="" placeholder="Enter Home Address">
-            </div>
-            <div>
-                <label for="mobile_Number">Mobile Number</label>
-                <input type="tel" name="mobile_Number" value="" placeholder="Enter Mobile Number">
-            </div>
-            <div>
-                <label for="email">E-mail Address</label>
-                <input type="email" name="email" value="" placeholder="Enter E-mail Address">
-            </div>
-            <div>
-                <label for="password">Password</label>
-                <input type="password" name="password" value="" placeholder="Enter Password">
-            </div>
-
-            <div class="">
-                <button type="submit" name="save">Save</button>
-            </div>
-        </form>
-    </div>
-</body>
-</html>
-<!-- PHP CODES -->
 <?php
     session_start();
+
+    // $id = 0;
+    $update = false;
+    $id = '';
+    $name = '';
+    $location = '';
+    $mobile = '';
+    $email = '';
+    $password = '';
 
 
     if(isset($_POST["save"])){
@@ -119,4 +84,67 @@
 
         
     }
+
+    // SET A DELETE FUNCTION
+    if(isset($_POST["delete"])){
+        $id = $_POST["delete"];
+        $query = ("DELETE FROM user_info WHERE id = ?");
+        $stmt = $connection->prepare($query);
+        $stmt->bindParam(1, $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+
+        $_SESSION["message"] = "Form in table has been deleted";
+        $_SESSION["msg_type"] = "Danger";
+
+        header("location:display.php");
+    }
+
+    // CREATE A FUNCTION FOR EDIT
+    if(isset($_POST["edit"])){
+        $id = $_POST["edit"];
+    }
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD</title>
+</head>
+<body>
+    <h2><div>INSERT DATA FORM</div></h2>
+    <div>
+        <form action="<?php echo $_SERVER["PHP_SELF"]?>" method="POST">
+            <div>
+                <label for="form_Number">Form Number</label>
+                <input type="text" name="form_Number" value="<?php echo $id?>" placeholder="Enter Form ID">
+            </div>
+            <div>
+                <label for="full_Name">Full Name</label>
+                <input type="text" name="full_Name" value="<?php echo $name?>" placeholder="Enter Full Name" required>
+            </div>
+            <div>
+                <label for="home_Address">Home Address</label>
+                <input type="text" name="home_Address" value="" placeholder="Enter Home Address">
+            </div>
+            <div>
+                <label for="mobile_Number">Mobile Number</label>
+                <input type="tel" name="mobile_Number" value="" placeholder="Enter Mobile Number">
+            </div>
+            <div>
+                <label for="email">E-mail Address</label>
+                <input type="email" name="email" value="" placeholder="Enter E-mail Address">
+            </div>
+            <div>
+                <label for="password">Password</label>
+                <input type="password" name="password" value="" placeholder="Enter Password">
+            </div>
+
+            <div class="">
+                <button type="submit" name="save">Save</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
