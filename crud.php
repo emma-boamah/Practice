@@ -43,6 +43,9 @@
 </html>
 <!-- PHP CODES -->
 <?php
+    session_start();
+
+
     if(isset($_POST["save"])){
         
         try{
@@ -103,7 +106,13 @@
                 
                 $stmt->execute();
                 
+                $_SESSION['message'] = "Form has been Added and saved to Table";
+                $_SESSION["msg_type"] = "success";
+
+                header("location: display.php");
             }
+
+
         } catch(PDOException $e){
             echo $e->getMessage();
         }
