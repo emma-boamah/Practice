@@ -10,7 +10,7 @@
     $email = '';
     $password = '';
 
-
+    // SET A CREATE FUNCTION
     if(isset($_POST["save"])){
         
         try{
@@ -105,6 +105,21 @@
     // CREATE A FUNCTION FOR EDIT
     if(isset($_POST["edit"])){
         $id = $_POST["edit"];
+        $update = true;
+        $query = ("SELECT * FROM user_info WHERE id=?");
+        $stmt = $connection->prepare( $query );
+        $stmt->bindParam(1, $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        while ($stmt->fetch(PDO::FETCH_ASSOC)){
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            $id = $row["ID"];
+            $name = $row["Name"];
+            $location = $row["Location"];
+            $mobile = $row["Mobile"];
+            $email = $row["Email"];
+            $password = $row["Password"];
+        }
     }
 ?>
 <!DOCTYPE html>
