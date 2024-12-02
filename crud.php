@@ -121,6 +121,26 @@
             $password = $row["Password"];
         }
     }
+
+    if(isset($_POST["update"])){
+        $id = $POST["id"];
+        $name = $_POST["name"];
+        $location = $_POST["location"];
+        $mobile = $_POST["mobile"];
+        $email = $_POST["email"];
+        $password = $_POST["password"];
+
+        $query = ("UPDATE user_info SET ID=?, Name=?, Location=?, Mobile=?, Email=?, Password=? WHERE id=?");
+        $stmt = $connection->prepare( $query );
+        $stmt->bindParam(1, $id, PDO::PARAM_INT);
+        $stmt->bindParam(2, $name, PDO::PARAM_STR);
+        $stmt->bindParam(3, $location, PDO::PARAM_STR);
+        $stmt->bindParam(4, $mobile, PDO::PARAM_INT);
+        $stmt->bindParam(5, $email, PDO::PARAM_STR);
+        $stmt->bindParam(6, $password, PDO::PARAM_STR);
+        $stmt->bindParam(7, $id, PDO::PARAM_INT);
+
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
